@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>My Workspace</title>
+
+  <meta name="theme-color" content="#000000" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-200: #e5e5e5;
+      --gray-400: #a3a3a3;
+      --gray-500: #737373;
+      --gray-700: #404040;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--white);
+      color: var(--black);
+      font-family: Inter, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 760px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    .navbar {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 25px;
+      height: 25px;
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--black);
+      border-radius: 50%;
+    }
+
+    /* MAIN */
+
+    main {
+      flex: 1;
+      padding-top: 95px;
+      padding-bottom: 70px;
+    }
+
+    .intro {
+      margin-bottom: 42px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gray-500);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .intro h1 {
+      font-size: clamp(32px, 6vw, 46px);
+      letter-spacing: -2px;
+      font-weight: 650;
+      line-height: 1.1;
+      margin-bottom: 13px;
+    }
+
+    .intro p {
+      color: var(--gray-500);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* TRACKERS */
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--gray-200);
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .tracker-count {
+      font-size: 11px;
+      color: var(--gray-500);
+    }
+
+    #tracker-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tracker {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 19px 14px;
+      border-bottom: 1px solid var(--gray-200);
+      cursor: pointer;
+      transition: background 0.2s ease;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .tracker:hover,
+    .tracker:focus-visible {
+      background: var(--gray-100);
+    }
+
+    .tracker-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .tracker-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 9px;
+      font-size: 19px;
+      filter: grayscale(1);
+    }
+
+    .tracker-details {
+      min-width: 0;
+    }
+
+    .tracker-details h3 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 5px;
+    }
+
+    .tracker-details p {
+      color: var(--gray-500);
+      font-size: 12px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .tracker-action {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gray-200);
+      border-radius: 50%;
+      color: var(--gray-500);
+      transition: all 0.2s ease;
+    }
+
+    .tracker:hover .tracker-action {
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
+    }
+
+    .tracker-action svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--gray-200);
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--gray-500);
+      font-size: 11px;
+    }
+
+    footer .footer-brand {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 0 20px;
+      }
+
+      .navbar {
+        height: 65px;
+      }
+
+      main {
+        padding-top: 75px;
+      }
+
+      .intro {
+        margin-bottom: 35px;
+      }
+
+      .intro h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .tracker {
+        padding: 16px 10px;
+      }
+
+      .tracker-info {
+        gap: 12px;
+      }
+
+      .tracker-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-icon">A</div>
+        <span id="brand-name"></span>
+      </div>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        <span>All systems normal</span>
+      </div>
+    </header>
+
+    <main>
+
+      <section class="intro">
+        <div class="eyebrow">PERSONAL WORKSPACE</div>
+        <h1 id="page-title"></h1>
+        <p id="page-description"></p>
+      </section>
+
+      <section class="trackers-section">
+
+        <div class="section-heading">
+          <h2>YOUR TRACKERS</h2>
+          <span class="tracker-count" id="tracker-count"></span>
+        </div>
+
+        <div id="tracker-container"></div>
+
+      </section>
+
+    </main>
+
+    <footer>
+      <span id="footer-text"></span>
+      <span class="footer-brand">Built with simplicity.</span>
+    </footer>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // CONFIGURATION - EDIT ONLY THIS SECTION
+    // ==========================================
+
+    const CONFIG = {
+      brandName: "ATB",
+      pageTitle: "Your workspace.",
+      pageDescription: "Everything you need, accessible in one place.",
+      footerText: "© 2026 Abhiram TB",
+
+      trackers: [
+        {
+          id: "attendance",
+          name: "Attendance Tracker",
+          description: "Daily attendance records and reports.",
+          url: "YOUR_GOOGLE_SHEET_URL",
+          icon: "📅"
+        },
+        {
+          id: "expenses",
+          name: "Expense Tracker",
+          description: "Manage and monitor your expenses.",
+          url: "YOUR_SECOND_URL",
+          icon: "💰"
+        }
+      ]
+    };
+
+    // ==========================================
+    // DYNAMIC RENDERING
+    // ==========================================
+
+    document.title = CONFIG.pageTitle;
+
+    document.getElementById("brand-name").textContent =
+      CONFIG.brandName;
+
+    document.getElementById("page-title").textContent =
+      CONFIG.pageTitle;
+
+    document.getElementById("page-description").textContent =
+      CONFIG.pageDescription;
+
+    document.getElementById("footer-text").textContent =
+      CONFIG.footerText;
+
+    const trackerContainer =
+      document.getElementById("tracker-container");
+
+    document.getElementById("tracker-count").textContent =
+      `${String(CONFIG.trackers.length).padStart(2, "0")} ITEMS`;
+
+    const arrowIcon = `
+      <svg viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round"
+        aria-hidden="true">
+        <path d="M7 17 17 7M7 7h10v10"/>
+      </svg>
+    `;
+
+    CONFIG.trackers.forEach((tracker) => {
+
+      const card = document.createElement("div");
+
+      card.className = "tracker";
+      card.id = tracker.id;
+      card.setAttribute("role", "link");
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("aria-label", `Open ${tracker.name}`);
+
+      card.innerHTML = `
+        <div class="tracker-info">
+          <div class="tracker-icon"></div>
+
+          <div class="tracker-details">
+            <h3></h3>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="tracker-action">
+          ${arrowIcon}
+        </div>
+      `;
+
+      card.querySelector(".tracker-icon").textContent =
+        tracker.icon;
+
+      card.querySelector("h3").textContent =
+        tracker.name;
+
+      card.querySelector("p").textContent =
+        tracker.description;
+
+      const navigate = () => {
+        try {
+          const destination = new URL(tracker.url);
+
+          if (!["https:", "http:"].includes(destination.protocol)) {
+            throw new Error("Invalid URL");
+          }
+
+          window.location.href = destination.href;
+
+        } catch {
+          alert("Please configure a valid tracker URL.");
+        }
+      };
+
+      card.addEventListener("click", navigate);
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          navigate();
+        }
+      });
+
+      trackerContainer.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
